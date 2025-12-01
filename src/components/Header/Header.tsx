@@ -1,7 +1,7 @@
 import hackerNewsLogo from "../../assets/y18.svg";
 import { CircleUserRoundIcon } from "lucide-react";
 
-function Header() {
+export function Header() {
   return (
     <header className="bg-hackernews-orange flex items-center gap-2 p-2 md:px-24">
       <img src={hackerNewsLogo} className="border-2 border-white" />
@@ -19,5 +19,3 @@ function Header() {
     </header>
   );
 }
-
-export { Header };
