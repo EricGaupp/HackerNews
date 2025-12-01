@@ -1,6 +1,7 @@
+import { Header } from "./components/Header/Header";
+
 function App() {
-  //TODO: Add content
-  return null;
+  return <Header />;
 }
 
-export default App;
+export { App };
