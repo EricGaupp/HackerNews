@@ -19,7 +19,8 @@ Run the project locally by:
 
 ## Technologies
 
-- [Vite + React + TypeScript template](https://vite.dev/guide/#scaffolding-your-first-vite-project) to bootstrap the project
-- [TanStack Query](https://tanstack.com/query/latest) for data fetching and managing server state
-- [Shadcn/ui + Tailwind CSS](https://ui.shadcn.com/) for components and styling
-- [Vitest](https://vitest.dev/) for unit and integration testing
+- [Vite + React + TypeScript template](https://vite.dev/guide/#scaffolding-your-first-vite-project) to bootstrap the project.
+- [TanStack Router](https://tanstack.com/router/latest) for application routing.
+- [TanStack Query](https://tanstack.com/query/latest) for data fetching and managing server state.
+- [Shadcn/ui + Tailwind CSS](https://ui.shadcn.com/) for components and styling.
+- [Vitest](https://vitest.dev/) for unit and integration testing.

@@ -1,5 +1,7 @@
-import hackerNewsLogo from "../../assets/y18.svg";
 import { CircleUserRoundIcon } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
+import hackerNewsLogo from "../../assets/y18.svg";
 
 export function Header() {
   return (
@@ -10,8 +12,21 @@ export function Header() {
           Hacker News
         </h1>
         <nav>
-          <a href="/">top</a> | <a href="/new">new</a> |{" "}
-          <a href="/best">best</a>
+          <Link
+            to="/"
+            className="[&.active]:text-white"
+            activeOptions={{ exact: true }}
+          >
+            top
+          </Link>
+          {` | `}
+          <Link to="/new" className="[&.active]:text-white">
+            new
+          </Link>
+          {` | `}
+          <Link to="/best" className="[&.active]:text-white">
+            best
+          </Link>
         </nav>
       </div>
       <CircleUserRoundIcon className="ml-auto" />
