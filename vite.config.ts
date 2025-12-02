@@ -24,7 +24,8 @@ export default defineConfig({
       "/api": {
         target: "https://hacker-news.firebaseio.com/v0",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) =>
+          path.replace(/^\/api/, "").concat(".json?print=pretty"),
       },
     },
   },
