@@ -1,22 +1,9 @@
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-async function fetchTopStories(): Promise<Array<number>> {
-  const response = await fetch("/api/topstories");
+import { topStoriesQueryOptions } from "@/api/topStories";
 
-  if (!response.ok) {
-    throw new Error("Error fetching top stories");
-  }
-
-  const topStories = await response.json();
-
-  return topStories;
-}
-
-const topStoriesQueryOptions = queryOptions({
-  queryKey: ["top"],
-  queryFn: () => fetchTopStories(),
-});
+import { StoryCard } from "@/components/StoryCard/StoryCard";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -28,12 +15,10 @@ function RouteComponent() {
   const { data } = useSuspenseQuery(topStoriesQueryOptions);
 
   return (
-    <div className="border-hackernews-orange rounded-lg border-4 p-2">
-      <ul>
-        {data.map((id) => (
-          <li key={id}>{id}</li>
-        ))}
-      </ul>
+    <div className="flex flex-col gap-2">
+      {data.map((id, index) => (
+        <StoryCard key={id} id={id} rank={index + 1} />
+      ))}
     </div>
   );
 }

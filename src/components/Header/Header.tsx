@@ -1,7 +1,7 @@
 import { CircleUserRoundIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-import hackerNewsLogo from "../../assets/y18.svg";
+import hackerNewsLogo from "@/assets/y18.svg";
 
 export function Header() {
   return (
