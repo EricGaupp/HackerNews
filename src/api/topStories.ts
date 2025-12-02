@@ -9,7 +9,7 @@ async function fetchTopStories(): Promise<Array<number>> {
 
   const topStories = await response.json();
 
-  return topStories.slice(0, 10);
+  return topStories;
 }
 
 export const topStoriesQueryOptions = queryOptions({
