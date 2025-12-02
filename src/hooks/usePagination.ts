@@ -1,14 +1,13 @@
 import { useMemo, useState } from "react";
 
-const STORIES_PER_PAGE = 30;
-
 export function usePagination(data: Array<any>) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const items = useMemo(() => {
-    const startIndex = currentPage * STORIES_PER_PAGE;
-    return data.slice(startIndex, startIndex + STORIES_PER_PAGE);
-  }, [data, currentPage, STORIES_PER_PAGE]);
+    const startIndex = currentPage * itemsPerPage;
+    return data.slice(startIndex, startIndex + itemsPerPage);
+  }, [data, currentPage, itemsPerPage]);
 
   function prevOnClick() {
     setCurrentPage((page) => page - 1);
@@ -19,8 +18,7 @@ export function usePagination(data: Array<any>) {
   }
 
   const prevDisabled = currentPage < 1;
-  const nextDisabled =
-    currentPage >= Math.ceil(data.length / STORIES_PER_PAGE) - 1;
+  const nextDisabled = currentPage >= Math.ceil(data.length / itemsPerPage) - 1;
 
   return {
     currentPage,
@@ -29,6 +27,7 @@ export function usePagination(data: Array<any>) {
     prevDisabled,
     nextOnClick,
     prevOnClick,
-    storiesPerPage: STORIES_PER_PAGE,
+    setItemsPerPage,
+    itemsPerPage,
   };
 }

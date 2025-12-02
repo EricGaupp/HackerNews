@@ -4,6 +4,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Label } from "@/components/ui/Label";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+} from "@/components/ui/Select";
 
 import { bestStoriesQueryOptions } from "@/api/bestStories";
 
@@ -23,11 +31,12 @@ function RouteComponent() {
   const {
     currentPage,
     items: stories,
+    itemsPerPage: storiesPerPage,
     nextDisabled,
     nextOnClick,
     prevDisabled,
     prevOnClick,
-    storiesPerPage,
+    setItemsPerPage: setStoriesPerPage,
   } = usePagination(data);
 
   return (
@@ -41,11 +50,30 @@ function RouteComponent() {
           />
         ))}
       </div>
-      <div className="flex justify-between pt-2">
+      <div className="flex justify-between py-2">
         <Button disabled={prevDisabled} onClick={prevOnClick} variant="ghost">
           <ArrowLeft />
           Previous
         </Button>
+        <div className="flex gap-2">
+          <Label htmlFor="storiesPerPageSelect">Stories Per Page</Label>
+          <Select
+            onValueChange={(value) => {
+              setStoriesPerPage(parseInt(value, 10));
+            }}
+            value={storiesPerPage.toString()}
+          >
+            <SelectTrigger id="storiesPerPageSelect">
+              <SelectValue placeholder="Stories Per Page" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="10">10</SelectItem>
+              <SelectItem value="30">30</SelectItem>
+              <SelectItem value="50">50</SelectItem>
+              <SelectItem value="100">100</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
         <Button disabled={nextDisabled} onClick={nextOnClick} variant="ghost">
           Next
           <ArrowRight />

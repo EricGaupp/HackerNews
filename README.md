@@ -23,4 +23,3 @@ Run the project locally by:
 - [TanStack Router](https://tanstack.com/router/latest) for application routing.
 - [TanStack Query](https://tanstack.com/query/latest) for data fetching and managing server state.
 - [Shadcn/ui + Tailwind CSS](https://ui.shadcn.com/) for components and styling.
-- [Vitest](https://vitest.dev/) for unit and integration testing.
