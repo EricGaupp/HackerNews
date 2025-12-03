@@ -2,7 +2,7 @@
 
 This project aims to provide a visual update to the HackerNews main page utilizing data obtained from the [HackerNews public API](https://github.com/HackerNews/API).
 
-## View the Project
+## View the project
 
 Run the project locally by:
 
@@ -23,3 +23,13 @@ Run the project locally by:
 - [TanStack Router](https://tanstack.com/router/latest) for application routing.
 - [TanStack Query](https://tanstack.com/query/latest) for data fetching and managing server state.
 - [Shadcn/ui + Tailwind CSS](https://ui.shadcn.com/) for components and styling.
+- [Vitest](https://vitest.dev/) for unit and integration testing.
+- [MSW](https://mswjs.io/) for API mocking.
+
+## Run the test suite
+
+The project tests use Vitest's browser mode which runs tests in a chromium browser environment using Playwright instead of a Node environment such as JSDOM. Run the tests locally by:
+
+1. Cloning the repo
+2. Installing dependencies with Node `npm i`
+3. Running Vitest with `npm run test`

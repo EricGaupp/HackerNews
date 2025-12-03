@@ -1,5 +1,4 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
 
 import { ArrowBigUpIcon } from "lucide-react";
 import { EyeOffIcon } from "lucide-react";
@@ -24,9 +23,9 @@ export function StoryCard({ id, rank }: StoryCardProps) {
         <p className="text-lg sm:text-xl">{`${rank}.`}</p>
         <div className="flex flex-col">
           <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-2">
-            <Link to={url} target="__blank" className="text-lg sm:text-xl">
+            <a href={url} target="__blank" className="text-lg sm:text-xl">
               {title}
-            </Link>
+            </a>
             {url ? (
               <p className="text-hackernews-orange">{new URL(url).hostname}</p>
             ) : null}
