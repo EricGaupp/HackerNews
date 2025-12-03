@@ -13,7 +13,7 @@ function RootComponent() {
   return (
     <>
       <Header />
-      <main className="overflow-scroll px-2 pt-4 md:px-24">
+      <main className="px-2 pt-4 md:px-24">
         <Outlet />
       </main>
     </>

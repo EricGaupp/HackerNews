@@ -1,16 +1,16 @@
 import { queryOptions } from "@tanstack/react-query";
 
 export interface Story {
-  by: string;
-  descendants: number;
   id: number;
+  by?: string;
+  descendants?: number;
   kids?: Array<number>;
-  score: number;
+  score?: number;
   text?: string;
-  time: number;
-  title: string;
-  type: "story";
-  url: string;
+  time?: number;
+  title?: string;
+  type?: "story";
+  url?: string;
 }
 
 async function fetchStory(id: number): Promise<Story> {

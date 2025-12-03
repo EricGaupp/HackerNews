@@ -1,6 +1,11 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 
+import { ArrowBigUpIcon } from "lucide-react";
+import { EyeOffIcon } from "lucide-react";
+import { MessagesSquareIcon } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+
 import { storyQueryOptions } from "@/api/story";
 
 interface StoryCardProps {
@@ -14,22 +19,60 @@ export function StoryCard({ id, rank }: StoryCardProps) {
   } = useSuspenseQuery(storyQueryOptions(id));
 
   return (
-    <div className="flex items-baseline gap-2 rounded-sm border-2 border-gray-800 p-2">
-      <div>{rank}. </div>
-      <div className="flex flex-col">
-        <div>
-          <Link to={url} target="__blank">
-            {title}
-          </Link>
+    <div className="flex flex-col rounded-sm border-2 border-gray-800 bg-white p-2">
+      <div className="flex items-baseline gap-2">
+        <p className="text-lg sm:text-xl">{`${rank}.`}</p>
+        <div className="flex flex-col">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-2">
+            <Link to={url} target="__blank" className="text-lg sm:text-xl">
+              {title}
+            </Link>
+            {url ? (
+              <p className="text-hackernews-orange">{new URL(url).hostname}</p>
+            ) : null}
+          </div>
+          <p className="text-sm sm:hidden">{`by ${author}`}</p>
+          <p className="text-sm sm:hidden">{`${time ? ` ${timestampToElapsedTime(time)}` : null}`}</p>
+          <div className="hidden sm:-ml-2 sm:flex sm:items-center sm:gap-2">
+            <Button
+              aria-label="Upvote"
+              className="rounded-full hover:bg-orange-400"
+              size="icon-sm"
+              variant="ghost"
+            >
+              <ArrowBigUpIcon />
+            </Button>
+            <p className="-ml-2">{`${score} points`}</p>
+            <p>|</p>
+            <p>{`by ${author}`}</p>
+            <p>|</p>
+            <p>{`${time ? ` ${timestampToElapsedTime(time)}` : null}`}</p>
+            <p>|</p>
+            <p>{`${kids && kids.length > 0 ? kids.length : "0"} comments`}</p>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <button>upvote</button>
-          <p>{`${score} points by ${author} ${timestampToElapsedTime(time)}`}</p>
-          <p>|</p>
-          <p>hide</p>
-          <p>|</p>
-          <p>{`${kids && kids.length > 0 ? kids.length : "0"} comments`}</p>
+        <div className="hidden sm:ml-auto sm:flex sm:self-center">
+          <Button
+            aria-label="Hide"
+            className="rounded-full"
+            size="icon-sm"
+            variant="ghost"
+          >
+            <EyeOffIcon />
+          </Button>
         </div>
+      </div>
+      <div className="-mx-2 mt-2 -mb-2 flex items-center border-t-2 border-t-gray-400 sm:hidden">
+        <Button aria-label="Upvote" className="flex-1" variant="ghost">
+          <ArrowBigUpIcon /> {`${score}`}
+        </Button>
+        <Button aria-label="Comment" className="flex-1" variant="ghost">
+          <MessagesSquareIcon />{" "}
+          {`${kids && kids.length > 0 ? kids.length : 0}`}
+        </Button>
+        <Button aria-label="Hide" className="flex-1" variant="ghost">
+          <EyeOffIcon />
+        </Button>
       </div>
     </div>
   );
@@ -38,6 +81,11 @@ export function StoryCard({ id, rank }: StoryCardProps) {
 function timestampToElapsedTime(timestamp: number) {
   const current = Math.floor(new Date().getTime() / 1000);
   const secondsElapsed = current - timestamp;
+
+  if (secondsElapsed > 86400) {
+    const daysElapsed = Math.floor(secondsElapsed / 86400);
+    return `${daysElapsed} day${daysElapsed > 1 ? "s" : ""} ago`;
+  }
 
   if (secondsElapsed > 3600) {
     const hoursElapsed = Math.floor(secondsElapsed / 3600);
