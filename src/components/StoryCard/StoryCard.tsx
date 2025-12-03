@@ -14,7 +14,7 @@ interface StoryCardProps {
 
 export function StoryCard({ id, rank }: StoryCardProps) {
   const {
-    data: { by: author, kids, score, time, title, url },
+    data: { by: author, descendants, score, time, title, url },
   } = useSuspenseQuery(storyQueryOptions(id));
 
   return (
@@ -47,7 +47,7 @@ export function StoryCard({ id, rank }: StoryCardProps) {
             <p>|</p>
             <p>{`${time ? ` ${timestampToElapsedTime(time)}` : null}`}</p>
             <p>|</p>
-            <p>{`${kids && kids.length > 0 ? kids.length : "0"} comments`}</p>
+            <p>{`${descendants} comments`}</p>
           </div>
         </div>
         <div className="hidden sm:ml-auto sm:flex sm:self-center">
@@ -63,11 +63,10 @@ export function StoryCard({ id, rank }: StoryCardProps) {
       </div>
       <div className="-mx-2 mt-2 -mb-2 flex items-center border-t-2 border-t-gray-400 sm:hidden">
         <Button aria-label="Upvote" className="flex-1" variant="ghost">
-          <ArrowBigUpIcon /> {`${score}`}
+          <ArrowBigUpIcon /> {score}
         </Button>
         <Button aria-label="Comment" className="flex-1" variant="ghost">
-          <MessagesSquareIcon />{" "}
-          {`${kids && kids.length > 0 ? kids.length : 0}`}
+          <MessagesSquareIcon /> {descendants}
         </Button>
         <Button aria-label="Hide" className="flex-1" variant="ghost">
           <EyeOffIcon />

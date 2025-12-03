@@ -12,8 +12,12 @@ export const restHandlers = [
 
     const story: Story = {
       id: parseInt(id, 10),
-      title:
-        "OpenAI suffers setback as hampsters powering data center go on strike",
+      title: "OpenAI suffers setback as hamsters powering data center unionize",
+      url: "https://techcrunch.com/2025/12/03/the-hamster-revolution-is-here/",
+      by: "hackernewsuserman",
+      time: 1764790143,
+      score: 10000,
+      descendants: 1000,
     };
 
     return HttpResponse.json(story);

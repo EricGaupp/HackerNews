@@ -40,5 +40,6 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
     },
     setupFiles: "./test/vitest.setup.browser.ts",
+    silent: "passed-only",
   },
 });
